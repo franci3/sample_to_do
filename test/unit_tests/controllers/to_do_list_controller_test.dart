@@ -21,7 +21,7 @@ void main() {
 
   test('should add item to list of toDos', () async {
     ToDoListItem toDoListItem =
-        ToDoListItem(id: 888888888, userId: 1, title: 'Test', completed: true);
+        ToDoListItem(userId: 1, title: 'Test', completed: true);
     await toDoListController.fetchToDoList();
     toDoListController.addToDoListItem(toDoListItem);
     expect(toDoListController.toDoList.contains(toDoListItem), isTrue);

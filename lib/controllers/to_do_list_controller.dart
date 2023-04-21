@@ -24,7 +24,9 @@ class ToDoListController extends ChangeNotifier {
   }
 
   void addToDoListItem(ToDoListItem toDoListItem) {
-    _toDoListItems.add(toDoListItem);
+    //API should give the element an ID, here for simplicity we just add one
+    toDoListItem.id = toDoList.last.id! + 1;
+    _toDoListItems.insert(0, toDoListItem);
     notifyListeners();
   }
 
