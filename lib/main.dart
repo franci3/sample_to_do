@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sample_to_do/screens/to_do_list_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,10 +34,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text(widget.title),
-        ),
-        body: Container());
+    return ToDoListScreen(title: widget.title);
   }
 }
