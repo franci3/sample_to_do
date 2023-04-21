@@ -13,4 +13,9 @@ class ToDoListItem {
       required this.userId,
       required this.title,
       required this.completed});
+
+  factory ToDoListItem.fromJson(Map<String, dynamic> json) =>
+      _$ToDoListItemFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ToDoListItemToJson(this);
 }
