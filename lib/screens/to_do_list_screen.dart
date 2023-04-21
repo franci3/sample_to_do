@@ -63,7 +63,9 @@ class ToDoListScreen extends StatelessWidget {
                         child: const Text('Add'),
                         onPressed: () {
                           final ToDoListItem newToDoListItem = ToDoListItem(
-                              userId: 1, title: title, completed: false);
+                              userId: 1,
+                              title: textEditingController.text,
+                              completed: false);
                           context
                               .read<ToDoListController>()
                               .addToDoListItem(newToDoListItem);
