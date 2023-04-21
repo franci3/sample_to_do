@@ -38,12 +38,24 @@ class ToDoListScreen extends StatelessWidget {
   void addListItem(BuildContext context) {
     showModalBottomSheet(
         context: context,
+        isScrollControlled: true,
         builder: (BuildContext context) {
           TextEditingController textEditingController = TextEditingController();
+
+          void addListItem() {
+            final ToDoListItem newToDoListItem = ToDoListItem(
+                userId: 1, title: textEditingController.text, completed: false);
+            context.read<ToDoListController>().addToDoListItem(newToDoListItem);
+            Navigator.pop(context);
+          }
+
           return Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 50)
+                .add(EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom)),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   'Add To Do',
@@ -51,6 +63,7 @@ class ToDoListScreen extends StatelessWidget {
                 ),
                 TextField(
                   controller: textEditingController,
+                  onEditingComplete: () => addListItem(),
                   decoration: const InputDecoration(
                     hintText: 'Title',
                   ),
@@ -61,16 +74,7 @@ class ToDoListScreen extends StatelessWidget {
                     MaterialButton(
                         color: Colors.grey.shade200,
                         child: const Text('Add'),
-                        onPressed: () {
-                          final ToDoListItem newToDoListItem = ToDoListItem(
-                              userId: 1,
-                              title: textEditingController.text,
-                              completed: false);
-                          context
-                              .read<ToDoListController>()
-                              .addToDoListItem(newToDoListItem);
-                          Navigator.pop(context);
-                        })
+                        onPressed: () => addListItem())
                   ],
                 )
               ],
